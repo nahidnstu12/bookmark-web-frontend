@@ -1,0 +1,35 @@
+{
+  "name": "bookmark-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev-local:admin": "env-cmd -f .\\env.local next dev admin -p 3050",
+    "dev-local:consumer": "env-cmd -f .\\env.local next dev consumer -p 3051",
+    "dev-local:delivary": "env-cmd -f .\\env.local next dev delivary -p 3052",
+    "build:admin-local": "env-cmd -f .\\env.local next build admin",
+    "build:consumer-local": "env-cmd -f .\\env.local next build consumer",
+    "build:admin-delivary": "env-cmd -f .\\env.local next build delivary",
+    "start:admin": "next start start -p 3050",
+    "start:consumer": "next start consumer -p 3051",
+    "start:delivary": "next start delivary -p 3052",
+    "symlink:create": "mklink /J admin\\public public && mklink /J consumer\\public public && mklink /J delivary\\public public",
+    "symlink:remove": "rmdir admin\\public && rmdir consumer\\public && rmdir delivary\\public",
+    "lint": "next lint",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "@types/node": "^20.4.5",
+    "@types/react": "^18.2.17",
+    "@types/react-dom": "^18.2.7",
+    "env-cmd": "^10.1.0",
+    "eslint": "^8.46.0",
+    "eslint-config-next": "^13.4.12",
+    "next": "^13.4.12",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.1.6"
+  }
+}
