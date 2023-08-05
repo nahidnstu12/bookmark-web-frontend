@@ -1,6 +1,5 @@
-export default function Home() {
-  return (
-    <p>hello from admin again testing </p>
+import CommonButton from "../../@core/components/Button/CommonButton";
 
-  )
+export default function Home() {
+  return <CommonButton isLoading={false} btnText={"hello"} />;
 }
