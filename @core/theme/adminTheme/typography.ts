@@ -1,6 +1,8 @@
 import { FontWeight } from "@/@core/common/enum";
+import {Palette} from "@mui/material/styles/createPalette";
+import {TypographyOptions} from "@mui/material/styles/createTypography";
 
-const typography = {
+const typography: TypographyOptions | ((palette: Palette) => TypographyOptions) = {
   fontFamily: "inter",
   fontSize: 16,
   h1: {
