@@ -1,6 +1,6 @@
-import { Button, Skeleton } from "@mui/material";
 import React from "react";
-import { ButtonProps } from "@mui/material/Button/Button";
+import { Button, ButtonProps, Skeleton } from "@mui/material";
+
 interface CommonButtonProps extends ButtonProps {
   onClick?: (event?: any) => void;
   children?: React.ReactNode;
