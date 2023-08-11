@@ -23,10 +23,11 @@
   "dependencies": {
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.1",
+    "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.2",
-    "@next/bundle-analyzer": "^13.4.13",
     "@reduxjs/toolkit": "^1.9.5",
+    "@types/nprogress": "^0.2.0",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
     "next": "^13.4.12",

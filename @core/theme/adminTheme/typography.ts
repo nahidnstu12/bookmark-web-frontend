@@ -1,5 +1,5 @@
-import { FontWeight } from "@/@core/common/enum";
 import { TypographyOptions } from "@mui/material/styles/createTypography";
+import {FontWeight} from "../../common/enum";
 
 const typography: TypographyOptions = {
   fontFamily: "inter",
