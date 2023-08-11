@@ -9,6 +9,8 @@ import { Settings } from "../../../@core/context/settingsContext";
 import ModeToggler from "../../../@core/layouts/components/shared-components/ModeToggler";
 import NotificationDropdown from "../../../@core/layouts/components/shared-components/NotificationDropdown";
 import UserDropdown from "../../../@core/layouts/components/shared-components/UserDropdown";
+import { PiMagnifyingGlass } from "react-icons/pi";
+import { AiOutlineMenuUnfold } from "react-icons/ai";
 
 // ** Icons Imports
 
@@ -51,7 +53,7 @@ const AppBarContent = (props: Props) => {
             onClick={toggleNavVisibility}
             sx={{ ml: -2.75, ...(hiddenSm ? {} : { mr: 3.5 }) }}
           >
-            {/*<Menu />*/}
+            <AiOutlineMenuUnfold />
           </IconButton>
         ) : null}
         <TextField
@@ -60,7 +62,7 @@ const AppBarContent = (props: Props) => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                {/*<Magnify fontSize="small" />*/}
+                <PiMagnifyingGlass fontSize="small" />
               </InputAdornment>
             ),
           }}
@@ -70,21 +72,6 @@ const AppBarContent = (props: Props) => {
         className="actions-right"
         sx={{ display: "flex", alignItems: "center" }}
       >
-        {hiddenSm ? null : (
-          <Box
-            component="a"
-            target="_blank"
-            rel="noreferrer"
-            sx={{ mr: 4, display: "flex" }}
-            href="https://github.com/themeselection/materio-mui-react-nextjs-admin-template-free"
-          >
-            <img
-              height={24}
-              alt="github stars"
-              src="https://img.shields.io/github/stars/themeselection/materio-mui-react-nextjs-admin-template-free?style=social"
-            />
-          </Box>
-        )}
         <ModeToggler settings={settings} saveSettings={saveSettings} />
         <NotificationDropdown />
         <UserDropdown />
