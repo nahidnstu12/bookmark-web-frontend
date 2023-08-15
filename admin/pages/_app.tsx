@@ -11,6 +11,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 
 // ** Global css styles
 import "../../styles/globals.css";
+import AdminLayout from "../../@core/layouts/admin";
 import { createEmotionCache } from "../../@core/utils/create-emotion-cache";
 import {
   SettingsConsumer,
@@ -46,8 +47,11 @@ const App = (props: ExtendedAppProps) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   // Variables
+  // const getLayout =
+  //   Component.getLayout ?? ((page: any) => <UserLayout>{page}</UserLayout>);
+
   const getLayout =
-    Component.getLayout ?? ((page: any) => <UserLayout>{page}</UserLayout>);
+      Component.getLayout ?? ((page: any) => <AdminLayout>{page}</AdminLayout>);
 
   return (
     <CacheProvider value={emotionCache}>

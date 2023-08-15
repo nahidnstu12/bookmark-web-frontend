@@ -4,9 +4,6 @@ import IconButton from "@mui/material/IconButton";
 import { Settings } from "../../../context/settingsContext";
 import { TiWeatherNight, TiWeatherSunny } from "react-icons/ti";
 
-// ** Icons Imports
-
-// ** Type Import
 
 interface Props {
   settings: Settings;

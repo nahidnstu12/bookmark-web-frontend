@@ -3,10 +3,11 @@ import { ReactNode } from 'react'
 
 // ** MUI Imports
 import { SvgIconProps } from '@mui/material'
+import {IconType} from "react-icons/lib";
 
 interface UserIconProps {
   iconProps?: SvgIconProps
-  icon: string | ReactNode
+  icon: ReactNode | string[] | IconType
 }
 
 const UserIcon = (props: UserIconProps) => {
