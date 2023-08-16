@@ -13,13 +13,12 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemButton, {
   ListItemButtonProps,
 } from "@mui/material/ListItemButton";
-import {IconType} from "react-icons/lib";
+import { IconType } from "react-icons/lib";
 import themeConfig from "../../../configs/themeConfig";
-import {Settings} from "../../../context/settingsContext";
+import { Settings } from "../../../context/settingsContext";
 import UserIcon from "../../../icons/UserIcon";
-import {handleURLQueries} from "../../utils";
-import {NavLink} from "../adminTypes";
-
+import { handleURLQueries } from "../../utils";
+import { NavLink } from "../adminTypes";
 
 interface Props {
   item: NavLink;
@@ -76,7 +75,10 @@ const VerticalNavLink = ({ item, navVisible, toggleNavVisibility }: Props) => {
       disabled={item.disabled || false}
       sx={{ mt: 1.5, px: "0 !important" }}
     >
-      <Link passHref href={item.path === undefined ? "/" : `${item.path}`}>
+      <Link
+        href={item.path === undefined ? "/" : `${item.path}`}
+        style={{ width: "100%" }}
+      >
         <MenuNavLink
           // component={"a"}
           className={isNavLinkActive() ? "active" : ""}
