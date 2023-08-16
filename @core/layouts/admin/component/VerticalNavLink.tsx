@@ -66,11 +66,7 @@ const VerticalNavLink = ({ item, navVisible, toggleNavVisibility }: Props) => {
   const IconTag: ReactNode | string[] | IconType = item.icon;
 
   const isNavLinkActive = () => {
-    if (router.pathname === item.path || handleURLQueries(router, item.path)) {
-      return true;
-    } else {
-      return false;
-    }
+    return router.pathname === item.path || handleURLQueries(router, item.path);
   };
 
   return (
@@ -82,7 +78,7 @@ const VerticalNavLink = ({ item, navVisible, toggleNavVisibility }: Props) => {
     >
       <Link passHref href={item.path === undefined ? "/" : `${item.path}`}>
         <MenuNavLink
-          component={"a"}
+          // component={"a"}
           className={isNavLinkActive() ? "active" : ""}
           {...(item.openInNewTab ? { target: "_blank" } : null)}
           onClick={(e) => {

@@ -7,7 +7,7 @@ import Box, { BoxProps } from "@mui/material/Box";
 import themeConfig from "../../configs/themeConfig";
 import AppBar from "./Appbar";
 import {LayoutProps} from "./adminTypes";
-import Navigation from "./component";
+import Sidebar from "./component/Sidebar";
 import Footer from "./Footer";
 
 
@@ -55,7 +55,7 @@ const VerticalLayout = (props: LayoutProps) => {
         <>
             <VerticalLayoutWrapper className="layout-wrapper">
                 {/* Navigation Menu */}
-                <Navigation
+                <Sidebar
                     navWidth={navWidth}
                     navVisible={navVisible}
                     setNavVisible={setNavVisible}

@@ -1,14 +1,12 @@
-// ** React Imports
 import { ReactNode } from 'react'
 
-// ** MUI Imports
 import { styled, useTheme } from '@mui/material/styles'
 import MuiSwipeableDrawer, { SwipeableDrawerProps } from '@mui/material/SwipeableDrawer'
 import {Settings} from "../../../context/settingsContext";
 
 // ** Type Import
 
-interface Props {
+interface IProps {
   hidden: boolean
   navWidth: number
   settings: Settings
@@ -36,7 +34,7 @@ const SwipeableDrawer = styled(MuiSwipeableDrawer)<SwipeableDrawerProps>({
   }
 })
 
-const Drawer = (props: Props) => {
+const Drawer = (props: IProps) => {
   // ** Props
   const { hidden, children, navWidth, navVisible, setNavVisible } = props
 

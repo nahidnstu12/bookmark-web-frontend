@@ -5,12 +5,12 @@ import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import InputAdornment from "@mui/material/InputAdornment";
-import { Settings } from "../../../@core/context/settingsContext";
-import ModeToggler from "../../../@core/layouts/components/shared-components/ModeToggler";
-import NotificationDropdown from "../../../@core/layouts/components/shared-components/NotificationDropdown";
-import UserDropdown from "../../../@core/layouts/components/shared-components/UserDropdown";
 import { PiMagnifyingGlass } from "react-icons/pi";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
+import {Settings} from "../../context/settingsContext";
+import ModeToggler from "./component/ModeToggler";
+import NotificationDropdown from "./component/NotificationDropdown";
+import UserDropdown from "./component/UserDropdown";
 
 // ** Icons Imports
 

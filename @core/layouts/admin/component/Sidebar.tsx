@@ -8,6 +8,9 @@ import { styled, useTheme } from "@mui/material/styles";
 
 // ** Third Party Components
 import PerfectScrollbar from "react-perfect-scrollbar";
+import {Settings} from "../../../context/settingsContext";
+import {hexToRGBA} from "../../../utils/hex-to-rgba";
+import {VerticalNavItemsType} from "../adminTypes";
 
 // ** Type Import
 
@@ -15,9 +18,6 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import Drawer from "./Drawer";
 import VerticalNavItems from "./VerticalNavItems";
 import VerticalNavHeader from "./VerticalNavHeader";
-import { hexToRGBA } from "../../../../utils/hex-to-rgba";
-import { Settings } from "../../../../context/settingsContext";
-import { VerticalNavItemsType } from "../../../../configs/types";
 
 // ** Util Import
 
@@ -25,7 +25,7 @@ interface Props {
   hidden: boolean;
   navWidth: number;
   settings: Settings;
-  children: ReactNode;
+  children?: ReactNode;
   navVisible: boolean;
   toggleNavVisibility: () => void;
   setNavVisible: (value: boolean) => void;
@@ -50,7 +50,8 @@ const StyledBoxForShadow = styled(Box)<BoxProps>({
   },
 });
 
-const Navigation = (props: Props) => {
+const Sidebar = (props: Props) => {
+
   // ** Props
   const {
     hidden,
@@ -164,4 +165,4 @@ const Navigation = (props: Props) => {
   );
 };
 
-export default Navigation;
+export default Sidebar;
