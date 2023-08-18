@@ -76,7 +76,7 @@ const Error404 = () => {
           src="/images/pages/404.png"
         />
         <Link passHref href="/">
-          <Button component="a" variant="contained" sx={{ px: 5.5 }}>
+          <Button variant="contained" sx={{ px: 5.5 }}>
             Back to Home
           </Button>
         </Link>

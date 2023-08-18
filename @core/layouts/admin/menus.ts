@@ -1,77 +1,63 @@
 import { TiHomeOutline } from "react-icons/ti";
+import { GrBook } from "react-icons/gr";
+import { BiSolidUser, BiSolidCategory } from "react-icons/bi";
+import { BsCartCheckFill } from "react-icons/bs";
 import {
-    MdFormatListBulletedAdd,
-    MdOutlineAccountBox,
-    MdOutlineLogin,
-    MdOutlineManageAccounts,
+  MdShoppingCartCheckout,
+  MdOutlineManageAccounts,
 } from "react-icons/md";
-import { IoAlertCircleOutline, IoCubeOutline } from "react-icons/io5";
-import { BiLogoGooglePlus } from "react-icons/bi";
-import { BsCreditCard2Back, BsTable } from "react-icons/bs";
-import {VerticalNavItemsType} from "./adminTypes";
+import { VerticalNavItemsType } from "./adminTypes";
 
 const navigation = (): VerticalNavItemsType => {
-    return [
-        {
-            title: "Dashboard",
-            icon: TiHomeOutline,
-            path: "/",
-        },
-        {
-            title: "Account Settings",
-            icon: MdOutlineManageAccounts,
-            path: "/account-settings",
-        },
-        {
-            sectionTitle: "Pages",
-        },
-        {
-            title: "Login",
-            icon: MdOutlineLogin,
-            path: "/pages/login",
-            openInNewTab: true,
-        },
-        {
-            title: "Register",
-            icon: MdOutlineAccountBox,
-            path: "/pages/register",
-            openInNewTab: true,
-        },
-        {
-            title: "Error",
-            icon: IoAlertCircleOutline,
-            path: "/pages/error",
-            openInNewTab: true,
-        },
-        {
-            sectionTitle: "User Interface",
-        },
-        {
-            title: "Typography",
-            icon: MdFormatListBulletedAdd,
-            path: "/typography",
-        },
-        {
-            title: "Icons",
-            path: "/icons",
-            icon: BiLogoGooglePlus,
-        },
-        {
-            title: "Cards",
-            icon: BsCreditCard2Back,
-            path: "/cards",
-        },
-        {
-            title: "Tables",
-            icon: BsTable,
-            path: "/tables",
-        },
-        {
-            icon: IoCubeOutline,
-            title: "Form Layouts",
-            path: "/form-layouts",
-        },
-    ];
+  return [
+    {
+      title: "Dashboard",
+      icon: TiHomeOutline,
+      path: "/",
+    },
+    {
+      title: "Users",
+      icon: BiSolidUser,
+      path: "/users",
+    },
+    {
+      sectionTitle: "Product Section",
+    },
+    {
+      title: "Product",
+      icon: GrBook,
+      path: "/products",
+    },
+    {
+      title: "Category",
+      icon: BiSolidCategory,
+      path: "/categories",
+    },
+    {
+      title: "Cart",
+      icon: BsCartCheckFill,
+      path: "/carts",
+    },
+    {
+      title: "Order",
+      icon: MdShoppingCartCheckout,
+      path: "/orders",
+    },
+    {
+      sectionTitle: "Account Section",
+    },
+    {
+      title: "Account Settings",
+      icon: MdOutlineManageAccounts,
+      path: "/account-settings",
+    },
+    // {
+    //     title: "Register",
+    //     icon: MdOutlineAccountBox,
+    //     path: "/register",
+    //     openInNewTab: true,
+    // },
+  ];
 };
 
 export default navigation;

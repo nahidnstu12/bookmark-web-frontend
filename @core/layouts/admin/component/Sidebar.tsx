@@ -8,9 +8,9 @@ import { styled, useTheme } from "@mui/material/styles";
 
 // ** Third Party Components
 import PerfectScrollbar from "react-perfect-scrollbar";
-import {Settings} from "../../../context/settingsContext";
-import {hexToRGBA} from "../../../utils/hex-to-rgba";
-import {VerticalNavItemsType} from "../adminTypes";
+import { Settings } from "../../../context/settingsContext";
+import { hexToRGBA } from "../../../utils/hex-to-rgba";
+import { VerticalNavItemsType } from "../adminTypes";
 
 // ** Type Import
 
@@ -51,7 +51,6 @@ const StyledBoxForShadow = styled(Box)<BoxProps>({
 });
 
 const Sidebar = (props: Props) => {
-
   // ** Props
   const {
     hidden,
@@ -59,7 +58,7 @@ const Sidebar = (props: Props) => {
     beforeVerticalNavMenuContent,
     verticalNavMenuContent: userVerticalNavMenuContent,
   } = props;
-
+  console.log("verticalNavMenuContent", userVerticalNavMenuContent);
   // ** States
   const [groupActive, setGroupActive] = useState<string[]>([]);
   const [currentActiveGroup, setCurrentActiveGroup] = useState<string[]>([]);
@@ -116,7 +115,14 @@ const Sidebar = (props: Props) => {
           )} 95%,${hexToRGBA(theme.palette.background.default, 0.05)})`,
         }}
       />
-      <Box sx={{ height: "100%", position: "relative", overflow: "hidden" }}>
+      <Box
+        sx={{
+          height: "100%",
+          position: "relative",
+          overflow: "hidden",
+          borderRight: `1px solid rgba(${theme.palette.customColors.main}, 0.12)`,
+        }}
+      >
         {/* @ts-ignore */}
         <ScrollWrapper
           {...(hidden
