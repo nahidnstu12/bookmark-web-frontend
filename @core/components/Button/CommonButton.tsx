@@ -1,36 +1,44 @@
 import React from "react";
 import { Button, ButtonProps, Skeleton } from "@mui/material";
 
-// interface CommonButtonProps extends ButtonProps {
-//   onClick?: (event?: any) => void;
-//   children?: React.ReactNode;
-//   className?: string;
-//   isLoading: boolean;
-//   btnText: string;
-//   color?:
-//     | "inherit"
-//     | "primary"
-//     | "secondary"
-//     | "success"
-//     | "error"
-//     | "info"
-//     | "warning";
-//   variant?: "contained" | "outlined" | "text";
-// }
+interface CommonButtonProps extends ButtonProps {
+  onClick?: (event?: any) => void;
+  children?: React.ReactNode;
+  className?: string;
+  isLoading?: boolean;
+  color?:
+    | "inherit"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "error"
+    | "info"
+    | "warning";
+  variant?: "contained" | "outlined" | "text";
+  disabled?:boolean
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
+  size?:'small' | 'medium' | 'large'
+
+}
 const CommonButton = ({
   onClick,
   children,
   className,
   isLoading,
-  btnText,
   color = "primary",
   variant = "text",
+  startIcon,
+  endIcon,
+    size='medium',
   ...props
-}: any) => {
-  return (
-    <Button color={color} variant={variant} classes={className} {...props}>
-      {children ? children : btnText}
-    </Button>
-  );
+}: CommonButtonProps) => {
+  return isLoading ? (
+      <Skeleton width={'70px'} height={'40px'} sx={{borderRadius:'10px'}}  />
+  ) : (
+      <Button  endIcon={endIcon} startIcon={startIcon} onClick={onClick} size={size} color={color} variant={variant} className={className} {...props} >
+        {children}
+      </Button>)
+
 };
 export default CommonButton;
