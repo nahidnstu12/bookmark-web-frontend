@@ -46,3 +46,93 @@ export const H1 = ({
         {children}
     </Typography>
 );
+
+export const H2 = ({
+                       children,
+                       className,
+                       align = 'left',
+                       color,
+                       sx = {},
+                       noWrap=false
+                   }: HeadingProp) => (
+    <Typography
+        variant='h2'
+        align={align}
+        className={className}
+        noWrap={noWrap}
+        sx={color?{...colors[color],...sx}:{...sx}}>
+        {children}
+    </Typography>
+);
+
+export const H3 = ({
+                       children,
+                       className,
+                       align = 'left',
+                       color,
+                       sx = {},
+                       noWrap=false
+                   }: HeadingProp) => (
+    <Typography
+        variant='h3'
+        align={align}
+        className={className}
+        noWrap={noWrap}
+        sx={color?{...colors[color],...sx}:{...sx}}>
+        {children}
+    </Typography>
+);
+
+export const H4 = ({
+                       children,
+                       className,
+                       align = 'left',
+                       color,
+                       sx = {},
+                       noWrap=false
+                   }: HeadingProp) => (
+    <Typography
+        variant='h4'
+        align={align}
+        className={className}
+        noWrap={noWrap}
+        sx={color?{...colors[color],...sx}:{...sx}}>
+        {children}
+    </Typography>
+);
+
+export const H5 = ({
+                       children,
+                       className,
+                       align = 'left',
+                       color,
+                       sx = {},
+                       noWrap=false
+                   }: HeadingProp) => (
+    <Typography
+        variant='h5'
+        align={align}
+        className={className}
+        noWrap={noWrap}
+        sx={color?{...colors[color],...sx}:{...sx}}>
+        {children}
+    </Typography>
+);
+
+export const H6 = ({
+                       children,
+                       className,
+                       align = 'left',
+                       color,
+                       sx = {},
+                       noWrap=false
+                   }: HeadingProp) => (
+    <Typography
+        variant='h6'
+        align={align}
+        className={className}
+        noWrap={noWrap}
+        sx={color?{...colors[color],...sx}:{...sx}}>
+        {children}
+    </Typography>
+);
