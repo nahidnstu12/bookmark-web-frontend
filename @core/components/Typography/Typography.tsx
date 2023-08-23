@@ -1,5 +1,6 @@
 import Typography from "@mui/material/Typography";
 import {SxProps} from '@mui/material/styles';
+import theme from "../../theme/adminTheme";
 
 interface HeadingProp {
     children?: React.ReactNode;
@@ -15,33 +16,33 @@ interface HeadingProp {
         |"black"
         |"white";
     sx?: SxProps;
-
-    [x: string]: any;
 }
 
-const color = {
-    primary: {color: '8px'},
-    secondary: {padding: '16px'},
-    success: {padding: '22px'},
-    error: {padding: '40px'},
-    info: {padding: 0},
-    warning: {padding: 0},
-    black: {padding: 0},
-    white: {padding: 0},
+const colors = {
+    primary: {color: theme.palette.primary.main},
+    secondary: {color: theme.palette.secondary.main},
+    success: {color: theme.palette.success.main},
+    error: {color: theme.palette.error.main},
+    info: {color: theme.palette.info.main},
+    warning: {color: theme.palette.warning.main},
+    black: {color: '#FFFFFF'},
+    white: {color: '#000000'},
 };
 
 export const H1 = ({
                        children,
-                       align = 'right',
-                       colorPrimary = false,
+                       className,
+                       align = 'left',
+                       color,
                        sx = {},
-                       ...props
+                       noWrap=false
                    }: HeadingProp) => (
     <Typography
         variant='h1'
-        tabIndex={0}
-        sx={getHeadingStyle(sx, centered, colorPrimary)}
-        {...props}>
+        align={align}
+        className={className}
+        noWrap={noWrap}
+        sx={color?{...colors[color],...sx}:{...sx}}>
         {children}
     </Typography>
 );
