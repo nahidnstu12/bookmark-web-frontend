@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Box, { BoxProps } from "@mui/material/Box";
-import BlankLayout from "../../@core/layouts/BlankLayout";
+import BlankLayout from "../../@core/layouts/blankpage/BlankLayout";
 import FooterIllustrations from "../../views/pages/misc/FooterIllustrations";
 
 // ** Layout Import

@@ -17,7 +17,7 @@ import { IconType } from "react-icons/lib";
 import themeConfig from "../../../configs/themeConfig";
 import { Settings } from "../../../context/settingsContext";
 import UserIcon from "../../../icons/UserIcon";
-import { handleURLQueries } from "../../utils";
+import { handleURLQueries } from "../../../utils/helpers";
 import { NavLink } from "../adminTypes";
 
 interface Props {
