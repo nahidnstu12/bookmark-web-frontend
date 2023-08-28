@@ -47,7 +47,7 @@ const typography: TypographyOptions = {
   body1: {
     fontWeight: FontWeight.REGULAR,
     lineHeight: "24px",
-    fontSize: "1rem",
+    fontSize: "2rem",
   },
   body2: {
     fontWeight: FontWeight.REGULAR,

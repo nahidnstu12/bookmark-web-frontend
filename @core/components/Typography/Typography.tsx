@@ -136,3 +136,112 @@ export const H6 = ({
         {children}
     </Typography>
 );
+
+export const Subtitle1 = ({
+                       children,
+                       className,
+                       align = 'left',
+                       color,
+                       sx = {},
+                       noWrap=false
+                   }: HeadingProp) => (
+    <Typography
+        variant='subtitle1'
+        align={align}
+        className={className}
+        noWrap={noWrap}
+        sx={color?{...colors[color],...sx}:{...sx}}>
+        {children}
+    </Typography>
+);
+
+export const Subtitle2 = ({
+                       children,
+                       className,
+                       align = 'left',
+                       color,
+                       sx = {},
+                       noWrap=false
+                   }: HeadingProp) => (
+    <Typography
+        variant='subtitle2'
+        align={align}
+        className={className}
+        noWrap={noWrap}
+        sx={color?{...colors[color],...sx}:{...sx}}>
+        {children}
+    </Typography>
+);
+
+export const Body1 = ({
+                              children,
+                              className,
+                              align = 'left',
+                              color,
+                              sx = {},
+                              noWrap=false
+                          }: HeadingProp) => (
+    <Typography
+        variant='body1'
+        align={align}
+        className={className}
+        noWrap={noWrap}
+        sx={color?{...colors[color],...sx}:{...sx}}>
+        {children}
+    </Typography>
+);
+
+
+export const Body2 = ({
+                              children,
+                              className,
+                              align = 'left',
+                              color,
+                              sx = {},
+                              noWrap=false
+                          }: HeadingProp) => (
+    <Typography
+        variant='body2'
+        align={align}
+        className={className}
+        noWrap={noWrap}
+        sx={color?{...colors[color],...sx}:{...sx}}>
+        {children}
+    </Typography>
+);
+
+export const Caption = ({
+                          children,
+                          className,
+                          align = 'left',
+                          color,
+                          sx = {},
+                          noWrap=false
+                      }: HeadingProp) => (
+    <Typography
+        variant='caption'
+        align={align}
+        className={className}
+        noWrap={noWrap}
+        sx={color?{...colors[color],...sx}:{...sx}}>
+        {children}
+    </Typography>
+);
+
+export const Overline = ({
+                          children,
+                          className,
+                          align = 'left',
+                          color,
+                          sx = {},
+                          noWrap=false
+                      }: HeadingProp) => (
+    <Typography
+        variant='overline'
+        align={align}
+        className={className}
+        noWrap={noWrap}
+        sx={color?{...colors[color],...sx}:{...sx}}>
+        {children}
+    </Typography>
+);
