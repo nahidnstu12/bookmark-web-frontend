@@ -6,22 +6,12 @@ import CustomTextField from "../../@core/components/Inputs/CustomTextField";
 import {useMemo} from "react";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Button from "@mui/material/Button";
 
 export default function Home() {
     const handleBtnClick=()=>{
         console.log('clicked')
     }
-
-    const validationSchema=useMemo(()=>{
-        return yup.object().shape({
-            title: yup
-                .string()
-                .trim()
-                .required()
-                .label('Book title'),
-        })
-    }
-},[])
 
 const validationSchema = useMemo(() => {
     return yup.object().shape({
@@ -29,7 +19,12 @@ const validationSchema = useMemo(() => {
             .string()
             .trim()
             .required()
-            .label("Book title")
+            .label("Book title"),
+        description: yup
+            .string()
+            .trim()
+            .required()
+            .label("Book description")
 
     });
 }, []);
@@ -37,15 +32,19 @@ const validationSchema = useMemo(() => {
         const {
             register,
             handleSubmit,
-            formState: { errors },
+            reset,
+            formState: { errors,isSubmitting },
         } = useForm<any>({
             resolver: yupResolver(validationSchema),
         })
-        const onSubmit: SubmitHandler<any> = (data) => console.log(data)
-
+        const onSubmit: SubmitHandler<any> = (data) =>{
+            reset({...data})
+            console.log(data)
+        }
+console.log(errors)
 
         return (
-    <Box >
+    <Box>
         <CommonButton  isLoading={true} >hello</CommonButton>
         <CommonButton   isLoading={false} onClick={handleBtnClick} className={"style"}  >click</CommonButton>
         <CommonButton  variant={'contained'}  isLoading={false} >with icon</CommonButton>
@@ -55,14 +54,23 @@ const validationSchema = useMemo(() => {
         <Body1>Body1</Body1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Grid  container spacing={2}>
+            <Grid  container spacing={2} mt={5}>
                 <Grid item xs={12}>
                     <CustomTextField
                         id='title'
                         label={'title'}
                         register={register}
                         errors={errors}
-                        required
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <CustomTextField
+                        id='description'
+                        label={'description'}
+                        register={register}
+                        errors={errors}
+                        multiline
+                        rows={4}
                     />
                 </Grid>
 
@@ -77,16 +85,11 @@ const validationSchema = useMemo(() => {
                         color={'primary'}
                         type={'submit'}
                         disabled={isSubmitting}>
-                        {messages['common.save'] as string}
+                        {'save'}
                     </Button>
-                    <Button
-                        variant={'outlined'}
-                        color={'primary'}
-                        type={'button'}
-                        onClick={props.onClose}>
-                        {messages['common.cancel'] as string}
-                    </Button>
+
                 </Grid>
+
             </Grid>
         </form>
 

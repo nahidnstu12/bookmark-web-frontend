@@ -1,7 +1,6 @@
 import TextField from "@mui/material/TextField";
 import {SxProps} from "@mui/material/styles";
 import {Skeleton} from "@mui/material";
-import {Body1} from "../Typography/Typography";
 import FormHelperText from "@mui/material/FormHelperText";
 
 
@@ -24,9 +23,6 @@ interface CustomTextFieldProps {
     defaultValue?: string;
     disabled?: boolean;
     errors?: any;
-
-
-
     // register?: any;
     control?: any;
     type?: string;
@@ -40,8 +36,6 @@ const CustomTextField = ({id,
                              isLoading,
                              register,
                              errors,
-                             multiline,
-                             rows,
                              defaultValue,
                              inputProps,
                              InputProps,
@@ -50,7 +44,8 @@ const CustomTextField = ({id,
                              onInput: onChangeCallback,
                              helperText,
                              ...rest}:CustomTextFieldProps) => {
-    let errorObj={};
+    let errorObj=errors && errors?.[id];
+
     return isLoading ? (
         <Skeleton sx={{width: '100%'}} />
     ) : (
@@ -61,20 +56,18 @@ const CustomTextField = ({id,
                 variant={variant}
                 id={id}
                 name={id}
-                // error={typeof errorObj != 'undefined' ?? false}
-                error={false}
+                error={errors.hasOwnProperty(id)}
                 className={className}
                 label={label}
                 disabled={disabled}
                 InputProps={InputProps}
                 inputProps={{...inputProps, ...{required: false}}}
+                defaultValue={defaultValue}
                 helperText={
-                    errorObj && errorObj?.message ? (
-                        errorObj?.message.hasOwnProperty('key') ? (
-                                <Body1>{errorObj?.message?.values || {}}</Body1>
+                    errorObj && errorObj.message ? (
+                        errorObj.message.hasOwnProperty('key') ? (errorObj.message?.values || {}
                         ) : (
-                            <Body1>{ errorObj?.message}</Body1>
-
+                            errorObj.message
                         )
                     ) : (
                         ''
@@ -83,7 +76,7 @@ const CustomTextField = ({id,
                 {...register(id)}
                 {...rest}
             />
-            {helperText && (
+           {helperText && (
                 <FormHelperText sx={{color: 'primary.main'}}>
                     {helperText}
                 </FormHelperText>
