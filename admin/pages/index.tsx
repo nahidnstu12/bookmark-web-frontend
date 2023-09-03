@@ -3,60 +3,51 @@ import { Box, Grid } from "@mui/material";
 import { Body1, H1 } from "../../@core/components/Typography/Typography";
 import { SubmitHandler, useForm } from "react-hook-form";
 import CustomTextField from "../../@core/components/Inputs/CustomTextField";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Button from "@mui/material/Button";
 import CustomSelectField from "../../@core/components/Inputs/CustomSelectField";
 
 export default function Home() {
-  const jobType = useMemo(
+  const [selectedType, setSelectedType] = useState<string | null | number>(
+    null,
+  );
+
+  console.log("selectedType", selectedType);
+  const onChangeType = (value: any) => {
+    setSelectedType(value ? value : null);
+    console.log("value12345", value, selectedType);
+  };
+
+  enum QuestionType {
+    MCQ = 1,
+    MAQ = 2,
+    FILL_IN_THE_BLANK = 3,
+    YES_NO = 4,
+  }
+
+  const questionTypes = useMemo(
     () => [
       {
-        id: 1,
+        id: QuestionType.MCQ,
         label: "A",
       },
       {
-        id: 2,
+        id: QuestionType.MAQ,
         label: "B",
       },
       {
-        id: 3,
+        id: QuestionType.YES_NO,
         label: "C",
       },
       {
-        id: 4,
+        id: QuestionType.FILL_IN_THE_BLANK,
         label: "D",
       },
     ],
     [],
   );
-
-  const handleBtnClick = () => {
-    console.log("clicked");
-  };
-
-  const validationSchema = useMemo(() => {
-    return yup.object().shape({
-      title: yup.string().trim().required().label("Book title"),
-      description: yup.string().trim().required().label("Book description"),
-    });
-  }, []);
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    control,
-    formState: { errors, isSubmitting },
-  } = useForm<any>({
-    resolver: yupResolver(validationSchema),
-  });
-  const onSubmit: SubmitHandler<any> = (data) => {
-    reset({ ...data });
-    console.log(data);
-  };
-  console.log(errors);
 
   enum OPTIONS {
     OPTION_1 = "option_1",
@@ -101,6 +92,34 @@ export default function Home() {
     ],
     [],
   );
+
+  const handleBtnClick = () => {
+    console.log("clicked");
+  };
+
+  const validationSchema = useMemo(() => {
+    return yup.object().shape({
+      title: yup.string().trim().required().label("Book title"),
+      description: yup.string().trim().required().label("Book description"),
+      maq_answer: yup.array().of(yup.mixed()).required().label("maq"),
+      question_type: yup.string().trim().required().label("question_type"),
+    });
+  }, [selectedType]);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    control,
+    formState: { errors, isSubmitting },
+  } = useForm<any>({
+    resolver: yupResolver(validationSchema),
+  });
+  const onSubmit: SubmitHandler<any> = (data) => {
+    reset({ ...data });
+    console.log(data);
+  };
+  console.log("errors", errors);
 
   return (
     <Box>
@@ -150,29 +169,33 @@ export default function Home() {
           <Grid item xs={12}>
             <CustomSelectField
               required
-              id="job_type_id"
-              label={"job type"}
+              id="question_type"
+              label={"question.type"}
               isLoading={false}
               control={control}
-              options={jobType}
+              options={questionTypes}
               optionValueProp="id"
-              optionTitleProp={["label"]}
+              optionTitleProp={"label"}
               errorInstance={errors}
+              onChange={onChangeType}
             />
           </Grid>
           <Grid item xs={12}>
-            <CustomSelectField
-              id="maq_answer"
-              required={true}
-              label={"question.answer"}
-              isLoading={false}
-              control={control}
-              options={answerOptions}
-              optionValueProp={"id"}
-              optionTitleProp={["label"]}
-              errorInstance={errors}
-              multiple={true}
-            />
+            <Grid item xs={6}>
+              <CustomSelectField
+                id="maq_answer"
+                required={true}
+                label={"maq"}
+                isLoading={false}
+                control={control}
+                options={answerOptions}
+                optionValueProp={"id"}
+                optionTitleProp={"label"}
+                errorInstance={errors}
+                multiple={true}
+                defaultValue={[]}
+              />
+            </Grid>
           </Grid>
           <Grid
             item

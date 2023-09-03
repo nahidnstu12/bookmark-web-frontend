@@ -19,7 +19,7 @@ type Props = {
   options?: Array<any>;
   errorInstance?: any;
   optionValueProp?: any;
-  optionTitleProp?: Array<string>;
+  optionTitleProp?: string;
   formLabelPadding?: string;
 
   control: any;
@@ -47,38 +47,13 @@ const CustomSelectField = ({
   formLabelPadding = "10px",
   ...props
 }: Props) => {
-  /*
-  const getTitle = (
-    option: any,
-    optionTitleProp: Array<string> | undefined,
-  ) => {
+  const getTitle = (option: any, optionTitleProp: string | undefined) => {
     let title = "";
     if (option && optionTitleProp) {
       title = option[optionTitleProp];
     }
-    console.log("title", title);
     return title;
   };
-*/
-
-  const getTitle = (
-    option: any,
-    optionTitleProp: Array<string> | undefined,
-  ) => {
-    let title = "";
-    if (option && optionTitleProp) {
-      let arr = [];
-      for (let i = 0; i < optionTitleProp.length; i++) {
-        arr.push(option[optionTitleProp[i]]);
-      }
-      console.log("arr", arr);
-      title = arr.join("-").split("").join("");
-      title = title[0] == "-" ? title.slice(1) : title;
-    }
-    console.log("title", title);
-    return title;
-  };
-
   let errorObj = errorInstance?.[id];
 
   return (
@@ -91,7 +66,6 @@ const CustomSelectField = ({
       >
         <Controller
           render={({ field: { onChange, value = defaultValue } }) => {
-            console.log("====>", value);
             return (
               <>
                 {label && (
@@ -135,7 +109,6 @@ const CustomSelectField = ({
                     let value =
                       option[optionValueProp] && option[optionValueProp];
                     let title = getTitle(option, optionTitleProp);
-                    console.log("value", value);
                     return (
                       <MenuItem key={index} value={value}>
                         {option?.icon}
