@@ -1,4 +1,4 @@
-import { FormControl, MenuItem, Select } from "@mui/material";
+import { FormControl, MenuItem, Select, Skeleton } from "@mui/material";
 import { Controller } from "react-hook-form";
 import FormLabel from "@mui/material/FormLabel";
 import FormHelperText from "@mui/material/FormHelperText";
@@ -58,81 +58,85 @@ const CustomSelectField = ({
 
   return (
     <>
-      <FormControl
-        variant={variant ? variant : "outlined"}
-        fullWidth={true}
-        disabled={isDisabled}
-        error={!!errorObj}
-      >
-        <Controller
-          render={({ field: { onChange, value = defaultValue } }) => {
-            return (
-              <>
-                {label && (
-                  <FormLabel
-                    sx={{
-                      paddingBottom: formLabelPadding,
-                      color: "primary.main",
-                      fontWeight: "500",
+      {isLoading ? (
+        <Skeleton />
+      ) : (
+        <FormControl
+          variant={variant ? variant : "outlined"}
+          fullWidth={true}
+          disabled={isDisabled}
+          error={!!errorObj}
+        >
+          <Controller
+            render={({ field: { onChange, value = defaultValue } }) => {
+              return (
+                <>
+                  {label && (
+                    <FormLabel
+                      sx={{
+                        paddingBottom: formLabelPadding,
+                        color: "primary.main",
+                        fontWeight: "500",
+                      }}
+                      error={typeof errorObj != "undefined" ?? false}
+                      component="legend"
+                      required={required}
+                    >
+                      {label as string}
+                    </FormLabel>
+                  )}
+                  <Select
+                    MenuProps={{
+                      style: {
+                        maxHeight: 400,
+                      },
                     }}
-                    error={typeof errorObj != "undefined" ?? false}
-                    component="legend"
-                    required={required}
+                    labelId="select-outlined-label"
+                    aria-label={id}
+                    label={label as React.ReactNode}
+                    value={value ? value : ""}
+                    multiple={multiple}
+                    onChange={(e) => {
+                      onChange(e.target.value);
+                      if (
+                        onChangeCallback &&
+                        typeof onChangeCallback === "function"
+                      ) {
+                        onChangeCallback(e.target.value);
+                      }
+                    }}
+                    inputProps={inputProps}
+                    {...props}
                   >
-                    {label as string}
-                  </FormLabel>
-                )}
-                <Select
-                  MenuProps={{
-                    style: {
-                      maxHeight: 400,
-                    },
-                  }}
-                  labelId="select-outlined-label"
-                  aria-label={id}
-                  label={label as React.ReactNode}
-                  value={value ? value : ""}
-                  multiple={multiple}
-                  onChange={(e) => {
-                    onChange(e.target.value);
-                    if (
-                      onChangeCallback &&
-                      typeof onChangeCallback === "function"
-                    ) {
-                      onChangeCallback(e.target.value);
-                    }
-                  }}
-                  inputProps={inputProps}
-                  {...props}
-                >
-                  {(options || []).map((option: any, index: number) => {
-                    let value =
-                      option[optionValueProp] && option[optionValueProp];
-                    let title = getTitle(option, optionTitleProp);
-                    return (
-                      <MenuItem key={index} value={value}>
-                        {option?.icon}
-                        {title}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-                {errorObj && (
-                  <FormHelperText>
-                    {errorObj.message
-                      ? errorObj.message.hasOwnProperty("key")
-                        ? errorObj.message?.values
-                        : errorObj.message
-                      : ""}
-                  </FormHelperText>
-                )}
-              </>
-            );
-          }}
-          name={id}
-          control={control}
-        />
-      </FormControl>
+                    {(options || []).map((option: any, index: number) => {
+                      let value =
+                        option[optionValueProp] && option[optionValueProp];
+                      let title = getTitle(option, optionTitleProp);
+                      return (
+                        <MenuItem key={index} value={value}>
+                          {option?.icon}
+                          {title}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                  {errorObj && (
+                    <FormHelperText>
+                      {errorObj.message
+                        ? errorObj.message.hasOwnProperty("key")
+                          ? errorObj.message?.values
+                          : errorObj.message
+                        : ""}
+                    </FormHelperText>
+                  )}
+                </>
+              );
+            }}
+            name={id}
+            control={control}
+          />
+        </FormControl>
+      )}
     </>
   );
 };
