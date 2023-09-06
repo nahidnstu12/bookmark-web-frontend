@@ -8,6 +8,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Button from "@mui/material/Button";
 import CustomSelectField from "../../@core/components/Inputs/CustomSelectField";
+import CustomRadioButton from "../../@core/components/Inputs/CustomRadioButton";
+import CustomCheckbox from "../../@core/components/Inputs/CustomCheckbox";
 
 export default function Home() {
   const [selectedType, setSelectedType] = useState<string | null | number>(
@@ -92,6 +94,11 @@ export default function Home() {
     ],
     [],
   );
+
+  const gender = [
+    { id: 1, label: "Male" },
+    { id: 0, label: "Female" },
+  ];
 
   const handleBtnClick = () => {
     console.log("clicked");
@@ -180,22 +187,38 @@ export default function Home() {
               onChange={onChangeType}
             />
           </Grid>
-          <Grid item xs={12}>
-            <Grid item xs={6}>
-              <CustomSelectField
-                id="maq_answer"
-                required={true}
-                label={"maq"}
-                isLoading={false}
-                control={control}
-                options={answerOptions}
-                optionValueProp={"id"}
-                optionTitleProp={"label"}
-                errorInstance={errors}
-                multiple={true}
-                defaultValue={[]}
-              />
-            </Grid>
+          <Grid item xs={6}>
+            <CustomSelectField
+              id="maq_answer"
+              required={true}
+              label={"maq"}
+              isLoading={false}
+              control={control}
+              options={answerOptions}
+              optionValueProp={"id"}
+              optionTitleProp={"label"}
+              errorInstance={errors}
+              multiple={true}
+              defaultValue={[]}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <CustomRadioButton
+              id="gender"
+              required={true}
+              label={"gender"}
+              control={control}
+              errorInstance={errors}
+              radios={gender}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <CustomCheckbox
+              id="checkbox"
+              label={"are you sure?"}
+              errorInstance={errors}
+              register={register}
+            />
           </Grid>
           <Grid
             item
