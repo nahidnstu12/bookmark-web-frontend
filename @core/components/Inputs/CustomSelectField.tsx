@@ -1,7 +1,7 @@
 import { FormControl, MenuItem, Select, Skeleton } from "@mui/material";
 import { Controller } from "react-hook-form";
-import FormLabel from "@mui/material/FormLabel";
 import FormHelperText from "@mui/material/FormHelperText";
+import InputLabel from "@mui/material/InputLabel";
 
 type Props = {
   id: string;
@@ -11,7 +11,7 @@ type Props = {
   inputProps?: any;
   isDisabled?: boolean;
   required?: boolean;
-  label?: string | React.ReactNode;
+  label: string | React.ReactNode;
   multiple?: boolean;
   onChange?: (e: any) => any;
   renderValue?: (value?: any) => React.ReactNode;
@@ -71,20 +71,18 @@ const CustomSelectField = ({
             render={({ field: { onChange, value = defaultValue } }) => {
               return (
                 <>
-                  {label && (
-                    <FormLabel
-                      sx={{
-                        paddingBottom: formLabelPadding,
-                        color: "primary.main",
-                        fontWeight: "500",
-                      }}
-                      error={typeof errorObj != "undefined" ?? false}
-                      component="legend"
-                      required={required}
-                    >
-                      {label as string}
-                    </FormLabel>
-                  )}
+                  <InputLabel
+                    sx={{
+                      paddingBottom: formLabelPadding,
+                      color: "primary.main",
+                      fontWeight: "500",
+                    }}
+                    error={typeof errorObj != "undefined" ?? false}
+                    component="legend"
+                    required={required}
+                  >
+                    {label as string}
+                  </InputLabel>
                   <Select
                     MenuProps={{
                       style: {
