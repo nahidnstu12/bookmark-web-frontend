@@ -1,9 +1,10 @@
 import TextField from "@mui/material/TextField";
 import { SxProps } from "@mui/material/styles";
-import { Skeleton } from "@mui/material";
+import { FormControl, Skeleton } from "@mui/material";
 import FormHelperText from "@mui/material/FormHelperText";
+import FormLabel from "@mui/material/FormLabel";
+import { Controller } from "react-hook-form";
 
-// interface CustomTextFieldProps extends TextFieldProps,TextFieldVariants{
 interface CustomTextFieldProps {
   id: string;
   label?: string;
@@ -11,7 +12,7 @@ interface CustomTextFieldProps {
   variant?: "outlined" | "standard" | "filled";
   sx?: SxProps;
   rows?: number;
-  size?: "small" | "medium" | string;
+  size?: "small" | "medium";
   isLoading?: boolean;
   required?: boolean;
   multiline?: boolean;
@@ -22,11 +23,13 @@ interface CustomTextFieldProps {
   defaultValue?: string;
   disabled?: boolean;
   errors?: any;
-  // register?: any;
   control?: any;
   type?: string;
   [x: string]: any;
   onInput?: any;
+  placeholder?: string | React.ReactNode;
+  formLabelPadding?: string;
+  formLabelColor?: string;
 }
 const CustomTextField = ({
   id,
@@ -34,15 +37,19 @@ const CustomTextField = ({
   className,
   variant = "outlined",
   isLoading,
-  register,
   errors,
   defaultValue,
   inputProps,
-  InputProps,
   disabled = false,
   required = false,
   onInput: onChangeCallback,
   helperText,
+  placeholder,
+  formLabelColor = "primary.main",
+  formLabelPadding = "10px",
+  fullWidth = true,
+  type,
+  control,
   ...rest
 }: CustomTextFieldProps) => {
   let errorObj = errors && errors?.[id];
@@ -51,29 +58,66 @@ const CustomTextField = ({
     <Skeleton sx={{ width: "100%" }} />
   ) : (
     <>
-      <TextField
-        required={required}
-        fullWidth
-        variant={variant}
-        id={id}
-        name={id}
-        error={errors.hasOwnProperty(id)}
-        className={className}
-        label={label}
-        disabled={disabled}
-        InputProps={InputProps}
-        inputProps={{ ...inputProps, ...{ required: false } }}
-        defaultValue={defaultValue}
-        helperText={
-          errorObj && errorObj.message
-            ? errorObj.message.hasOwnProperty("key")
-              ? errorObj.message?.values || {}
-              : errorObj.message
-            : ""
-        }
-        {...register(id)}
-        {...rest}
-      />
+      <FormControl fullWidth={fullWidth}>
+        <Controller
+          render={({ field: { ref, onChange, value = defaultValue } }) => (
+            <>
+              {label && (
+                <FormLabel
+                  sx={{
+                    paddingBottom: formLabelPadding,
+                    color: formLabelColor,
+                    fontWeight: "500",
+                  }}
+                  error={typeof errorObj != "undefined" ?? false}
+                  component="legend"
+                  required={required}
+                >
+                  {label as string}
+                </FormLabel>
+              )}
+              <TextField
+                fullWidth
+                ref={ref}
+                variant={variant ? variant : "outlined"}
+                className={className}
+                // label={label as string}
+                title={label as string}
+                placeholder={placeholder as string}
+                type={type}
+                error={errorObj && Boolean(errorObj)}
+                helperText={
+                  errorObj && errorObj.message
+                    ? errorObj.message.hasOwnProperty("key")
+                      ? errorObj.message?.values || {}
+                      : errorObj.message
+                    : ""
+                }
+                onInput={(event: any) => {
+                  let value =
+                    type == "file" ? event.target.files : event.target.value;
+                  if (onChangeCallback) {
+                    onChangeCallback(value);
+                  }
+                }}
+                onChange={(event: any) => {
+                  let value =
+                    type == "file" ? event.target.files : event.target.value;
+                  onChange(value);
+                }}
+                value={value ?? ""}
+                disabled={disabled ? disabled : false}
+                inputProps={{ ...inputProps, ...{ required: false } }}
+                {...rest}
+              />
+            </>
+          )}
+          name={id}
+          control={control}
+          defaultValue={defaultValue ?? ""}
+        />
+      </FormControl>
+
       {helperText && (
         <FormHelperText sx={{ color: "primary.main" }}>
           {helperText}

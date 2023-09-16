@@ -160,6 +160,8 @@ export default function Home() {
               label={"title"}
               register={register}
               errors={errors}
+              control={control}
+              required
             />
           </Grid>
           <Grid item xs={12}>
@@ -170,6 +172,7 @@ export default function Home() {
               errors={errors}
               multiline
               rows={4}
+              control={control}
             />
           </Grid>
 

@@ -1,7 +1,7 @@
 import { FormControl, MenuItem, Select, Skeleton } from "@mui/material";
 import { Controller } from "react-hook-form";
 import FormHelperText from "@mui/material/FormHelperText";
-import InputLabel from "@mui/material/InputLabel";
+import FormLabel from "@mui/material/FormLabel";
 
 type Props = {
   id: string;
@@ -21,7 +21,7 @@ type Props = {
   optionValueProp?: any;
   optionTitleProp?: string;
   formLabelPadding?: string;
-
+  placeholder?: string | React.ReactNode;
   control: any;
 
   [x: string]: any;
@@ -45,6 +45,7 @@ const CustomSelectField = ({
   required = false,
   label,
   formLabelPadding = "10px",
+  placeholder,
   ...props
 }: Props) => {
   const getTitle = (option: any, optionTitleProp: string | undefined) => {
@@ -71,7 +72,7 @@ const CustomSelectField = ({
             render={({ field: { onChange, value = defaultValue } }) => {
               return (
                 <>
-                  <InputLabel
+                  <FormLabel
                     sx={{
                       paddingBottom: formLabelPadding,
                       color: "primary.main",
@@ -82,7 +83,7 @@ const CustomSelectField = ({
                     required={required}
                   >
                     {label as string}
-                  </InputLabel>
+                  </FormLabel>
                   <Select
                     MenuProps={{
                       style: {
@@ -91,7 +92,7 @@ const CustomSelectField = ({
                     }}
                     labelId="select-outlined-label"
                     aria-label={id}
-                    label={label as React.ReactNode}
+                    // label={label as React.ReactNode}
                     value={value ? value : ""}
                     multiple={multiple}
                     onChange={(e) => {
@@ -106,6 +107,17 @@ const CustomSelectField = ({
                     inputProps={inputProps}
                     {...props}
                   >
+                    {placeholder && (
+                      <MenuItem disabled value="">
+                        <>
+                          <em>{placeholder as React.ReactNode}</em>
+                          {required && (
+                            <span style={{ color: "#dd4744" }}> *</span>
+                          )}
+                        </>
+                      </MenuItem>
+                    )}
+
                     {(options || []).map((option: any, index: number) => {
                       let value =
                         option[optionValueProp] && option[optionValueProp];
