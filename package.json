@@ -27,6 +27,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.2",
     "@reduxjs/toolkit": "^1.9.5",
+    "@tanstack/react-table": "^8.9.11",
     "@types/nprogress": "^0.2.0",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
