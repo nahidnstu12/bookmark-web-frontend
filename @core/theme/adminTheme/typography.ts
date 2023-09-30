@@ -1,6 +1,7 @@
-import { FontWeight } from "@/@core/common/enum";
+import { TypographyOptions } from "@mui/material/styles/createTypography";
+import {FontWeight} from "../../common/enum";
 
-const typography = {
+const typography: TypographyOptions = {
   fontFamily: "inter",
   fontSize: 16,
   h1: {
@@ -46,7 +47,7 @@ const typography = {
   body1: {
     fontWeight: FontWeight.REGULAR,
     lineHeight: "24px",
-    fontSize: "1rem",
+    fontSize: "2rem",
   },
   body2: {
     fontWeight: FontWeight.REGULAR,
