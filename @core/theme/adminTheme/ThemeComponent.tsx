@@ -1,4 +1,3 @@
-// ** React Imports
 import { ReactNode } from "react";
 
 // ** MUI Imports
@@ -10,11 +9,6 @@ import {
   responsiveFontSizes,
 } from "@mui/material/styles";
 
-// ** Type Imports
-
-// ** Theme Config
-
-// ** Theme Override Imports
 import overrides from "./overrides";
 import typography from "./typography";
 
@@ -23,8 +17,8 @@ import themeOptions from "./ThemeOptions";
 
 // ** Global Styles
 import GlobalStyling from "./globalStyles";
-import { Settings } from "../context/settingsContext";
-import themeConfig from "../configs/themeConfig";
+import { Settings } from "../../context/settingsContext";
+import themeConfig from "../../configs/themeConfig";
 
 interface Props {
   settings: Settings;
