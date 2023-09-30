@@ -1,15 +1,14 @@
 import React, { FC, useCallback, useEffect, useState } from "react";
 import IconButton from "@mui/material/IconButton";
-import TuneIcon from "@mui/icons-material/Tune";
 import Badge from "@mui/material/Badge";
 import { useForm } from "react-hook-form";
 import { Button, Grid } from "@mui/material";
 import { DatatableFilterFields } from "../../../../utilities/enums/DataTableFilterEnums";
 import HookFormMuiModal from "../../../../modals/HookFormMuiModal/HookFormMuiModal";
-import IntlMessages from "../../../../utility/IntlMessages";
 import { isBreakPointUp } from "../../../../utility/Utils";
 import CustomTextInput from "../../../../elements/input/CustomTextInput/CustomTextInput";
 import CustomFilterableFormSelect from "../../../../elements/input/CustomFilterableFormSelect";
+import { FaFilter } from "react-icons/fa6";
 
 interface IFilterPopup {
   onClose: any;
@@ -119,14 +118,7 @@ const FilterPopup: FC<IFilterPopup> = ({
       onClose={onClose}
       open={true}
       maxWidth={isBreakPointUp("xl") ? "md" : "sm"}
-      title={
-        <IntlMessages
-          id="common.advance_filter"
-          values={{
-            subject: <IntlMessages id="common.advance_filter" />,
-          }}
-        />
-      }
+      title={"Filter"}
       handleSubmit={handleSubmit(handleFilterSubmit)}
       actions={
         <>
@@ -212,7 +204,7 @@ const FilterComponent = ({
         onClick={onOpenFilterModal}
       >
         <Badge badgeContent={columnFilters.length} color="secondary">
-          <TuneIcon color={"primary"} />
+          <FaFilter color={"primary"} />
         </Badge>
       </IconButton>
       {isOpenFilterModal && (

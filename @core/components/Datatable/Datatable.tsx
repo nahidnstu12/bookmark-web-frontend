@@ -21,6 +21,7 @@ import TopBar from "./components/TopBar/TopBar";
 import DataTableContainer from "./components/DatatableContainer";
 import { getTableOptions } from "./components/helpers";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
+import { onFetchDataParams } from "../../hooks/useDataTableFetchData";
 
 interface dataTableProps {
   columns: any[];

@@ -1,5 +1,5 @@
 import React, { ReactElement, useCallback, useState } from "react";
-import ViewColumnsIcon from "@mui/icons-material/ViewColumn";
+
 import {
   Checkbox,
   FormControlLabel,
@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { FcMenu } from "react-icons/fc";
 
 const PREFIX = "ColumnVisibilityPage";
 
@@ -143,7 +144,7 @@ const ColumnVisibilityComponent = ({
   return (
     <>
       <SmallIconActionButton
-        icon={<ViewColumnsIcon color={"primary"} />}
+        icon={<FcMenu color={"primary"} />}
         onClick={onVisibilityIconClick}
         label="Show / hide columns"
       />
