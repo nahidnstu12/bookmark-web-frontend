@@ -67,6 +67,7 @@ const CustomSelectField = ({
           fullWidth={true}
           disabled={isDisabled}
           error={!!errorObj}
+          size={size ? size : "small"}
         >
           <Controller
             render={({ field: { onChange, value = defaultValue } }) => {

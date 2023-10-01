@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
 import { SxProps } from "@mui/material/styles";
-import theme from "../../theme/adminTheme";
+import { useTheme } from "@mui/material";
 
 interface HeadingProp {
   children?: React.ReactNode;
@@ -19,15 +19,18 @@ interface HeadingProp {
   sx?: SxProps;
 }
 
-const colors = {
-  primary: { color: theme.palette.primary.main },
-  secondary: { color: theme.palette.secondary.main },
-  success: { color: theme.palette.success.main },
-  error: { color: theme.palette.error.main },
-  info: { color: theme.palette.info.main },
-  warning: { color: theme.palette.warning.main },
-  black: { color: "#FFFFFF" },
-  white: { color: "#000000" },
+const Colors = () => {
+  const theme = useTheme();
+  return {
+    primary: { color: theme.palette.primary.main },
+    secondary: { color: theme.palette.secondary.main },
+    success: { color: theme.palette.success.main },
+    error: { color: theme.palette.error.main },
+    info: { color: theme.palette.info.main },
+    warning: { color: theme.palette.warning.main },
+    black: { color: "#FFFFFF" },
+    white: { color: "#000000" },
+  };
 };
 
 export const H1 = ({
@@ -43,7 +46,8 @@ export const H1 = ({
     align={align}
     className={className}
     noWrap={noWrap}
-    sx={color ? { ...colors[color], ...sx } : { ...sx }}
+    // sx={sx}
+    sx={color ? { ...Colors()[color], ...sx } : { ...sx }}
   >
     {children}
   </Typography>
@@ -62,7 +66,7 @@ export const H2 = ({
     align={align}
     className={className}
     noWrap={noWrap}
-    sx={color ? { ...colors[color], ...sx } : { ...sx }}
+    sx={color ? { ...Colors()[color], ...sx } : { ...sx }}
   >
     {children}
   </Typography>
@@ -81,7 +85,7 @@ export const H3 = ({
     align={align}
     className={className}
     noWrap={noWrap}
-    sx={color ? { ...colors[color], ...sx } : { ...sx }}
+    sx={color ? { ...Colors()[color], ...sx } : { ...sx }}
   >
     {children}
   </Typography>
@@ -100,7 +104,7 @@ export const H4 = ({
     align={align}
     className={className}
     noWrap={noWrap}
-    sx={color ? { ...colors[color], ...sx } : { ...sx }}
+    sx={color ? { ...Colors()[color], ...sx } : { ...sx }}
   >
     {children}
   </Typography>
@@ -119,7 +123,7 @@ export const H5 = ({
     align={align}
     className={className}
     noWrap={noWrap}
-    sx={color ? { ...colors[color], ...sx } : { ...sx }}
+    sx={color ? { ...Colors()[color], ...sx } : { ...sx }}
   >
     {children}
   </Typography>
@@ -138,7 +142,7 @@ export const H6 = ({
     align={align}
     className={className}
     noWrap={noWrap}
-    sx={color ? { ...colors[color], ...sx } : { ...sx }}
+    sx={color ? { ...Colors()[color], ...sx } : { ...sx }}
   >
     {children}
   </Typography>
@@ -157,7 +161,7 @@ export const Subtitle1 = ({
     align={align}
     className={className}
     noWrap={noWrap}
-    sx={color ? { ...colors[color], ...sx } : { ...sx }}
+    sx={color ? { ...Colors()[color], ...sx } : { ...sx }}
   >
     {children}
   </Typography>
@@ -176,7 +180,7 @@ export const Subtitle2 = ({
     align={align}
     className={className}
     noWrap={noWrap}
-    sx={color ? { ...colors[color], ...sx } : { ...sx }}
+    sx={color ? { ...Colors()[color], ...sx } : { ...sx }}
   >
     {children}
   </Typography>
@@ -195,7 +199,7 @@ export const Body1 = ({
     align={align}
     className={className}
     noWrap={noWrap}
-    sx={color ? { ...colors[color], ...sx } : { ...sx }}
+    sx={color ? { ...Colors()[color], ...sx } : { ...sx }}
   >
     {children}
   </Typography>
@@ -214,7 +218,7 @@ export const Body2 = ({
     align={align}
     className={className}
     noWrap={noWrap}
-    sx={color ? { ...colors[color], ...sx } : { ...sx }}
+    sx={color ? { ...Colors()[color], ...sx } : { ...sx }}
   >
     {children}
   </Typography>
@@ -233,7 +237,7 @@ export const Caption = ({
     align={align}
     className={className}
     noWrap={noWrap}
-    sx={color ? { ...colors[color], ...sx } : { ...sx }}
+    sx={color ? { ...Colors()[color], ...sx } : { ...sx }}
   >
     {children}
   </Typography>
@@ -252,7 +256,7 @@ export const Overline = ({
     align={align}
     className={className}
     noWrap={noWrap}
-    sx={color ? { ...colors[color], ...sx } : { ...sx }}
+    sx={color ? { ...Colors()[color], ...sx } : { ...sx }}
   >
     {children}
   </Typography>

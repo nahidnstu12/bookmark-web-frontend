@@ -2,13 +2,10 @@ import Head from "next/head";
 import { Router } from "next/router";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
-
 import NProgress from "nprogress";
 import { CacheProvider } from "@emotion/react";
 import type { EmotionCache } from "@emotion/cache";
-
 import "react-perfect-scrollbar/dist/css/styles.css";
-
 import "../../styles/globals.css";
 import AdminLayout from "../../@core/layouts/admin";
 import ThemeComponent from "../../@core/theme/adminTheme/ThemeComponent";
@@ -42,10 +39,6 @@ if (themeConfig.routingLoader) {
 // ** Configure JSS & ClassName
 const App = (props: ExtendedAppProps) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-
-  // Variables
-  // const getLayout =
-  //   Component.getLayout ?? ((page: any) => <UserLayout>{page}</UserLayout>);
 
   const getLayout =
     // @ts-ignore

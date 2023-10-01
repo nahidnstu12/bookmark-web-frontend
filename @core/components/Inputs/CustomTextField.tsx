@@ -49,6 +49,7 @@ const CustomTextField = ({
   formLabelPadding = "10px",
   fullWidth = true,
   type,
+  size,
   control,
   ...rest
 }: CustomTextFieldProps) => {
@@ -85,6 +86,7 @@ const CustomTextField = ({
                 title={label as string}
                 placeholder={placeholder as string}
                 type={type}
+                size={size ? size : "small"}
                 error={errorObj && Boolean(errorObj)}
                 helperText={
                   errorObj && errorObj.message

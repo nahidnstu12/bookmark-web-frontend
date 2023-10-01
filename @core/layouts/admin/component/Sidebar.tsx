@@ -58,7 +58,6 @@ const Sidebar = (props: Props) => {
     beforeVerticalNavMenuContent,
     verticalNavMenuContent: userVerticalNavMenuContent,
   } = props;
-  console.log("verticalNavMenuContent", userVerticalNavMenuContent);
   // ** States
   const [groupActive, setGroupActive] = useState<string[]>([]);
   const [currentActiveGroup, setCurrentActiveGroup] = useState<string[]>([]);
@@ -103,6 +102,7 @@ const Sidebar = (props: Props) => {
 
   return (
     <Drawer {...props}>
+      {/*  Admin Logo Component */}
       <VerticalNavHeader {...props} />
       <StyledBoxForShadow
         ref={shadowRef}

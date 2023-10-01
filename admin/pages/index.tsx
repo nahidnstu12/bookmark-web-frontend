@@ -1,15 +1,15 @@
-import CommonButton from "../../@core/components/Button/CommonButton";
-import { Box, Grid } from "@mui/material";
-import { Body1, H1 } from "../../@core/components/Typography/Typography";
-import { SubmitHandler, useForm } from "react-hook-form";
-import CustomTextField from "../../@core/components/Inputs/CustomTextField";
-import { useMemo, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { Box, Grid } from "@mui/material";
 import Button from "@mui/material/Button";
-import CustomSelectField from "../../@core/components/Inputs/CustomSelectField";
-import CustomRadioButton from "../../@core/components/Inputs/CustomRadioButton";
+import { useMemo, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import * as yup from "yup";
+import CommonButton from "../../@core/components/Button/CommonButton";
 import CustomCheckbox from "../../@core/components/Inputs/CustomCheckbox";
+import CustomRadioButton from "../../@core/components/Inputs/CustomRadioButton";
+import CustomSelectField from "../../@core/components/Inputs/CustomSelectField";
+import CustomTextField from "../../@core/components/Inputs/CustomTextField";
+import { Body1, H1 } from "../../@core/components/Typography/Typography";
 
 export default function Home() {
   const [selectedType, setSelectedType] = useState<string | null | number>(
@@ -143,18 +143,14 @@ export default function Home() {
       </CommonButton>
       <CommonButton color={"info"}>hello</CommonButton>
 
-      <H1
-        color={"error"}
-        noWrap={true}
-        sx={{ fontSize: "200px", color: "black" }}
-      >
+      <H1 color={"error"} noWrap={true}>
         helllooo
       </H1>
       <Body1>Body1</Body1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2} mt={5}>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <CustomTextField
               id="title"
               label={"title"}
@@ -164,7 +160,7 @@ export default function Home() {
               required
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <CustomTextField
               id="description"
               label={"description"}
@@ -176,7 +172,7 @@ export default function Home() {
             />
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <CustomSelectField
               required
               id="question_type"
