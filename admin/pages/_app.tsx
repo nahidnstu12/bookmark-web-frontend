@@ -9,7 +9,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 import "../../styles/globals.css";
 import AdminLayout from "../../@core/layouts/admin";
 import ThemeComponent from "../../@core/theme/adminTheme/ThemeComponent";
-import { createEmotionCache } from "../../@core/utils/create-emotion-cache";
+import createEmotionCache from "../../@core/utils/create-emotion-cache";
 import {
   SettingsConsumer,
   SettingsProvider,

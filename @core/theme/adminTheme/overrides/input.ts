@@ -12,6 +12,7 @@ const input = (theme: Theme) => {
     },
     MuiInput: {
       styleOverrides: {
+        padding: 10,
         root: {
           "&:before": {
             borderBottom: `1px solid rgba(${theme.palette.customColors.main}, 0.22)`,
