@@ -1,9 +1,6 @@
-// ** React Imports
 import { ElementType, ReactNode } from "react";
-
 import Link from "next/link";
 import { useRouter } from "next/router";
-
 import Chip from "@mui/material/Chip";
 import ListItem from "@mui/material/ListItem";
 import { styled } from "@mui/material/styles";

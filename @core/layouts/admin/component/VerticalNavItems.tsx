@@ -26,7 +26,7 @@ const resolveNavItemComponent = (item: NavLink | NavSectionTitle) => {
 const VerticalNavItems = (props: Props) => {
   // ** Props
   // const { verticalNavItems } = props;
-  console.log("props", props);
+
   const RenderMenuItems = props?.verticalNavItems?.map(
     (item: NavLink | NavSectionTitle, index: number) => {
       const TagName: any = resolveNavItemComponent(item);

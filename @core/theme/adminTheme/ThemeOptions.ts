@@ -1,4 +1,3 @@
-// ** MUI Theme Provider
 import { deepmerge } from "@mui/utils";
 import { ThemeOptions } from "@mui/material";
 
@@ -6,10 +5,10 @@ import { ThemeOptions } from "@mui/material";
 
 // ** Theme Override Imports
 import palette from "./palette";
-import spacing from "./spacing";
+import spacing from "./spacings";
 import shadows from "./shadows";
 import breakpoints from "./breakpoints";
-import { Settings } from "../context/settingsContext";
+import { Settings } from "../../context/settingsContext";
 
 const themeOptions = (settings: Settings): ThemeOptions => {
   // ** Vars

@@ -1,15 +1,12 @@
 // ** React Imports
 import { ReactNode } from "react";
 
-// ** MUI Imports
 import { Theme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useSettings } from "../../hooks/useSettings";
 import AppHeader from "./AppHeader";
 import Layout from "./Layout";
 import menus from "./menus";
-
-// ** Hook Import
 
 interface Props {
   children: ReactNode;

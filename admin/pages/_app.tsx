@@ -1,23 +1,21 @@
 import Head from "next/head";
-import {Router} from "next/router";
-import type {NextPage} from "next";
-import type {AppProps} from "next/app";
-
+import { Router } from "next/router";
+import type { NextPage } from "next";
+import type { AppProps } from "next/app";
 import NProgress from "nprogress";
-import {CacheProvider} from "@emotion/react";
-import type {EmotionCache} from "@emotion/cache";
-
+import { CacheProvider } from "@emotion/react";
+import type { EmotionCache } from "@emotion/cache";
 import "react-perfect-scrollbar/dist/css/styles.css";
-
-// ** Global css styles
 import "../../styles/globals.css";
 import AdminLayout from "../../@core/layouts/admin";
-import {createEmotionCache} from "../../@core/utils/create-emotion-cache";
-import {SettingsConsumer, SettingsProvider,} from "../../@core/context/settingsContext";
-import ThemeComponent from "../../@core/theme/ThemeComponent";
+import ThemeComponent from "../../@core/theme/adminTheme/ThemeComponent";
+import { createEmotionCache } from "../../@core/utils/create-emotion-cache";
+import {
+  SettingsConsumer,
+  SettingsProvider,
+} from "../../@core/context/settingsContext";
 import themeConfig from "../../@core/configs/themeConfig";
 
-// ** Extend App Props with Emotion
 type ExtendedAppProps = AppProps & {
   Component: NextPage;
   emotionCache: EmotionCache;
@@ -42,11 +40,8 @@ if (themeConfig.routingLoader) {
 const App = (props: ExtendedAppProps) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
-  // Variables
-  // const getLayout =
-  //   Component.getLayout ?? ((page: any) => <UserLayout>{page}</UserLayout>);
-
   const getLayout =
+    // @ts-ignore
     Component.getLayout ?? ((page: any) => <AdminLayout>{page}</AdminLayout>);
 
   return (
