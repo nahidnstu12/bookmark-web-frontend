@@ -4,8 +4,8 @@ import { Box } from "@mui/system";
 import { useRouter } from "next/router";
 import React from "react";
 import ComponentsOverrides from "../../theme/frontendTheme/overrides";
-import Footer from "./Footer";
-import NavBar from "./NavBar";
+// import Footer from "./Footer";
+// import NavBar from "./NavBar";
 
 const ChildrenContainer = styled(Box)(({ theme }) => ({
   margin: "130px 5%",
@@ -33,9 +33,9 @@ const Layout = ({ children }: any) => {
           : null
       }
     >
-      <NavBar />
+      {/*<NavBar />*/}
       <ChildrenContainer>{children}</ChildrenContainer>
-      <Footer />
+      {/*<Footer />*/}
     </Box>
   );
 };

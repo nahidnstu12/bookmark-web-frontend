@@ -1,5 +1,6 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { createContext, useContext, useState } from "react";
+import breakpoints from "../adminTheme/breakpoints";
 import shadows from "../adminTheme/shadows";
 import typography from "../adminTheme/typography";
 import { paletteDark, paletteLight } from "./palette";
@@ -27,6 +28,7 @@ export function ThemeContext({ children }: any) {
       ...typography,
     },
     shadows: shadows(mode),
+    breakpoints: breakpoints(),
   });
 
   return (
