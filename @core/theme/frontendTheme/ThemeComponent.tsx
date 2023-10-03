@@ -5,8 +5,12 @@ import shadows from "../adminTheme/shadows";
 import typography from "../adminTheme/typography";
 import { paletteDark, paletteLight } from "./palette";
 import { PaletteMode } from "@mui/material";
+const initialContext = {
+  mode: "",
+  handleChangeMode: () => {},
+};
 
-const Context = createContext({});
+const Context = createContext(initialContext);
 
 export function ThemeContext({ children }: any) {
   const [mode, setMode] = useState<PaletteMode>("light");

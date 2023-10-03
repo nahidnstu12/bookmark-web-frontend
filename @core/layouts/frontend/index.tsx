@@ -4,6 +4,7 @@ import { Box } from "@mui/system";
 import { useRouter } from "next/router";
 import React from "react";
 import ComponentsOverrides from "../../theme/frontendTheme/overrides";
+import NavBar from "./component/NavBar";
 // import Footer from "./Footer";
 // import NavBar from "./NavBar";
 
@@ -33,7 +34,7 @@ const Layout = ({ children }: any) => {
           : null
       }
     >
-      {/*<NavBar />*/}
+      <NavBar />
       <ChildrenContainer>{children}</ChildrenContainer>
       {/*<Footer />*/}
     </Box>

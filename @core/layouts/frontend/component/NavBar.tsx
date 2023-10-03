@@ -13,7 +13,7 @@ import IconButton from "@mui/material/IconButton";
 import { Stack } from "@mui/system";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import qs from "qs";
+
 import { useEffect, useState } from "react";
 import { AiOutlineFilter } from "react-icons/ai";
 import { BiSearch, BiUser } from "react-icons/bi";
@@ -23,26 +23,12 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { RiMoonLine } from "react-icons/ri";
 import { VscHome } from "react-icons/vsc";
-import { useDispatch, useSelector } from "react-redux";
-import { UseThemeContext } from "../../../context/ThemeContext";
-import useAuthCheck from "../../../hooks/useAuthCheck";
-import useProfileMenuHandlers from "../../../hooks/useProfileMenuHandlers";
-import {
-  closeLoginModal,
-  closeRegisterModal,
-  openLoginModal,
-  openRegisterModal,
-} from "../../../store/features/authModal/authModalSlice";
-import { useGetBooksQuery } from "../../../store/features/books/booksApi";
-import { useGetCartsByUserQuery } from "../../../store/features/carts/cartsApi";
-import { useGetNavigationQuery } from "../../../store/features/singleType/navigation/navigationApi";
-import { shortId } from "../../../utils";
-import Logo from "../../Logo";
-import SearchBar from "../../shared/SearchBar";
-import Login from "../Auth/Login";
-import Register from "../Auth/Register";
+import { useGetBooksQuery } from "../../../../@store/features/booksApi";
+import { UseThemeContext } from "../../../theme/frontendTheme/ThemeComponent";
 import CartItemComponent from "./CartItemComponent";
 import Drawer from "./Drawer";
+import Logo from "./Logo";
+
 import {
   AppBarContainer,
   IconContainer,
@@ -54,15 +40,16 @@ import {
   MobileMenuContainer,
   MobMenuItemContainer,
   ThemeSwitchStyle,
-} from "./Styles";
+} from "./nav-styles";
+import SearchBar from "./Searchbar";
 
 const NavBar = () => {
   const theme = useTheme();
   // eslint-disable-next-line no-unused-vars
-  const authChecked = useAuthCheck(); //don't remove it
-  const dispatch = useDispatch();
+  // const authChecked = useAuthCheck(); //don't remove it
+  // const dispatch = useDispatch();
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [cartBookFilter, setCartBookFilter] = useState();
+  const [_cartBookFilter, setCartBookFilter] = useState<any>();
   const [serachTrig, setSearchTrig] = useState(false);
   const [cartListsWithImage, setCartListsWithImage] = useState();
   const [cartModalTrg, setCartModalTrig] = useState(false);
@@ -72,27 +59,28 @@ const NavBar = () => {
   const [profileMenuTrig, setProfileMenuTrig] = useState(false);
   const { handleChangeMode } = UseThemeContext();
   const router = useRouter();
-  const { data: navigation } = useGetNavigationQuery();
-  const isAuthenticated = useSelector((state) => state?.auth);
-  const authUser = isAuthenticated?.user || {};
-  const { loginModal, registerModal } = useSelector(
-    (state) => state?.authModal ?? false,
-  );
-  const profileMenuHandlers = useProfileMenuHandlers();
+  const isAuthenticated = { accessToken: null };
+  // const isAuthenticated = useSelector((state) => state?.auth);
+  // const authUser = isAuthenticated?.user || {};
+  // const { loginModal, registerModal } = useSelector(
+  //   (state) => state?.authModal ?? false,
+  // );
+  // const profileMenuHandlers = useProfileMenuHandlers();
 
-  const { data: cartLists } = useGetCartsByUserQuery(
-    { userId: authUser?.id },
-    { skip: !authUser?.id },
-  );
+  // const { data: cartLists } = useGetCartsByUserQuery(
+  //   { userId: authUser?.id },
+  //   { skip: !authUser?.id },
+  // );
+  const cartLists: any = [];
   const { data: cartBooks } = useGetBooksQuery({
-    query: qs.stringify(cartBookFilter, { encode: false }),
+    query: "",
   });
 
   useEffect(() => {
     const cartbookIds = cartLists?.data?.map(
-      (item) => item?.attributes?.book?.data?.id,
+      (item: any) => item?.attributes?.book?.data?.id,
     );
-    let query = {
+    let query: any = {
       populate: ["images"],
       filters: {
         id: {
@@ -106,7 +94,7 @@ const NavBar = () => {
   useEffect(() => {
     if (cartLists?.data && cartBooks?.data) {
       const cartBookItem = cartBooks?.data?.reduce(
-        (acc, curr) => ({
+        (acc: any, curr: any) => ({
           ...acc,
           [curr.id]: curr?.attributes?.images?.data[0]?.attributes?.url,
         }),
@@ -114,7 +102,7 @@ const NavBar = () => {
       );
 
       // @LATER cart image not insert
-      const cartWithImage = cartLists?.data?.map((item, ind) => ({
+      const cartWithImage = cartLists?.data?.map((item: any, ind: number) => ({
         ...item.attributes,
         cartImage: cartBookItem[item?.attributes?.book?.data?.id],
         id: cartLists?.data[ind]?.id,
@@ -125,14 +113,14 @@ const NavBar = () => {
   }, [cartLists?.data, cartBooks?.data]);
 
   const totalAmount = cartLists?.data?.reduce(
-    (acc, curr) =>
+    (acc: any, curr: any) =>
       acc +
       (curr?.attributes?.variant?.data?.attributes?.price || 0) *
         curr?.attributes?.quantity,
     0,
   );
 
-  const handleOpenUserMenu = (event) => {
+  const handleOpenUserMenu = (event: any) => {
     setAnchorElUser(event.currentTarget);
   };
 
@@ -141,19 +129,64 @@ const NavBar = () => {
   };
 
   // have logout dependency
-  const profileMenuItems = navigation?.data?.attributes?.profileMenus?.map(
-    ({ ...menu }) => {
-      if (typeof profileMenuHandlers[menu.onClickHandler] === "function") {
-        menu.onClickHandler = profileMenuHandlers[menu.onClickHandler];
-      } else {
-        delete menu.onClickHandler;
-      }
-
-      return menu;
+  // const profileMenuItems = navigation?.data?.attributes?.profileMenus?.map(
+  //   ({ ...menu }) => {
+  //     if (typeof profileMenuHandlers[menu.onClickHandler] === "function") {
+  //       menu.onClickHandler = profileMenuHandlers[menu.onClickHandler];
+  //     } else {
+  //       delete menu.onClickHandler;
+  //     }
+  //
+  //     return menu;
+  //   },
+  // );
+  // const menuItems = navigation?.data?.attributes?.menus;
+  const menuItems = [
+    {
+      text: "Books",
+      url: "/books",
     },
-  );
-  const menuItems = navigation?.data?.attributes?.menus;
-  const toggleDrawer = (open) => (event) => {
+    {
+      text: "Authors",
+      url: "/authors",
+    },
+    {
+      text: "Publishers",
+      url: "/publishers",
+    },
+    {
+      text: "Contact us",
+      url: "/contact",
+    },
+  ];
+  const profileMenuItems = [
+    {
+      url: "/profile",
+      text: "Profile",
+    },
+    {
+      url: "/profile/my-orders",
+      text: "My Orders",
+    },
+    {
+      url: "/profile/my-wishlist",
+      text: "My Wishlists",
+    },
+    {
+      url: "/checkout",
+      text: "Checkout",
+    },
+    {
+      url: "/profile/change-password",
+      text: "Change Password",
+    },
+    {
+      url: "/",
+      text: "Logout",
+      onClickHandler: "logoutUser",
+    },
+  ];
+  const toggleDrawer = (open: any) => (event: any) => {
     if (
       event &&
       event.type === "keydown" &&
@@ -168,7 +201,7 @@ const NavBar = () => {
     setSearchTrig(true);
   };
 
-  const toggleMenuDraw = (open) => (event) => {
+  const toggleMenuDraw = (open: any) => (event: any) => {
     if (
       event &&
       event.type === "keydown" &&
@@ -179,7 +212,7 @@ const NavBar = () => {
     setMobMenuTrig(open);
   };
 
-  const toggleProfileDraw = (open) => (event) => {
+  const toggleProfileDraw = (open: any) => (event: any) => {
     if (
       event &&
       event.type === "keydown" &&
@@ -190,7 +223,7 @@ const NavBar = () => {
     setProfileMenuTrig(open);
   };
 
-  const toggleFilterDraw = (open) => (event) => {
+  const toggleFilterDraw = (open: any) => (event: any) => {
     if (
       event &&
       event.type === "keydown" &&
@@ -214,20 +247,20 @@ const NavBar = () => {
   };
 
   const handleClickOpenLogin = () => {
-    dispatch(openLoginModal());
+    // dispatch(openLoginModal());
   };
 
-  const handleCloseLogin = () => {
-    dispatch(closeLoginModal());
-  };
-
-  const handleClickOpenRegister = () => {
-    dispatch(openRegisterModal());
-  };
-
-  const handleCloseRegister = () => {
-    dispatch(closeRegisterModal());
-  };
+  // const handleCloseLogin = () => {
+  //   // dispatch(closeLoginModal());
+  // };
+  //
+  // const handleClickOpenRegister = () => {
+  //   // dispatch(openRegisterModal());
+  // };
+  //
+  // const handleCloseRegister = () => {
+  //   // dispatch(closeRegisterModal());
+  // };
 
   return (
     <>
@@ -238,15 +271,19 @@ const NavBar = () => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Link href="/">
+          <Link href="/" style={{ textDecoration: "none" }}>
             <LogoContainer>
               <Logo />
             </LogoContainer>
           </Link>
           {!serachTrig ? (
             <Stack direction="row" spacing={2} alignItems="center">
-              {menuItems?.map((item) => (
-                <Link key={shortId()} href={item.url}>
+              {menuItems?.map((item: any, index: number) => (
+                <Link
+                  key={index}
+                  href={item.url}
+                  style={{ textDecoration: "none" }}
+                >
                   <LinkContainer
                     key={item.id}
                     active={router.pathname.includes(item.url)}
@@ -296,7 +333,7 @@ const NavBar = () => {
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
-                      alt={authUser?.username?.toUpperCase()}
+                      alt={"live-test"}
                       src="/static/images/avatar/2.jpg"
                     />
                   </IconButton>
@@ -319,20 +356,20 @@ const NavBar = () => {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  {profileMenuItems?.map((menu) =>
+                  {profileMenuItems?.map((menu: any, index) =>
                     typeof menu?.onClickHandler === "function" ? (
-                      <MenuItemContainer key={menu.id}>
+                      <MenuItemContainer key={index}>
                         <MenuItem onClick={handleCloseUserMenu}>
                           <Typography
                             textAlign="center"
-                            onClick={menu?.onClickHandler}
+                            // onClick={menu?.onClickHandler}
                           >
                             {menu.text}
                           </Typography>
                         </MenuItem>
                       </MenuItemContainer>
                     ) : (
-                      <MenuItemContainer key={menu.id}>
+                      <MenuItemContainer key={index}>
                         <Link href={menu.url}>
                           <MenuItem onClick={handleCloseUserMenu}>
                             <Typography textAlign="center">
@@ -380,7 +417,8 @@ const NavBar = () => {
           ) : (
             <Link href="/">
               <LogoContainer>
-                <Logo />
+                {/*<Logo />*/}
+                Bookstore
               </LogoContainer>
             </Link>
           )}
@@ -452,17 +490,17 @@ const NavBar = () => {
         />
       </MobileMenuContainer>
 
-      <Login
-        open={loginModal}
-        handleClickOpen={handleClickOpenRegister}
-        handleClose={handleCloseLogin}
-      />
+      {/*<Login*/}
+      {/*  open={loginModal}*/}
+      {/*  handleClickOpen={handleClickOpenRegister}*/}
+      {/*  handleClose={handleCloseLogin}*/}
+      {/*/>*/}
 
-      <Register
-        open={registerModal}
-        handleClickOpen={handleClickOpenLogin}
-        handleClose={handleCloseRegister}
-      />
+      {/*<Register*/}
+      {/*  open={registerModal}*/}
+      {/*  handleClickOpen={handleClickOpenLogin}*/}
+      {/*  handleClose={handleCloseRegister}*/}
+      {/*/>*/}
     </>
   );
 };
