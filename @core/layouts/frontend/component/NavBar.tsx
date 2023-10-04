@@ -42,6 +42,7 @@ import {
   ThemeSwitchStyle,
 } from "./nav-styles";
 import SearchBar from "./Searchbar";
+import { menuItems, profileMenuItems } from "./data";
 
 const NavBar = () => {
   const theme = useTheme();
@@ -49,7 +50,7 @@ const NavBar = () => {
   // const authChecked = useAuthCheck(); //don't remove it
   // const dispatch = useDispatch();
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [_cartBookFilter, setCartBookFilter] = useState<any>();
+  const [_cartBookFilter, _setCartBookFilter] = useState<any>();
   const [serachTrig, setSearchTrig] = useState(false);
   const [cartListsWithImage, setCartListsWithImage] = useState();
   const [cartModalTrg, setCartModalTrig] = useState(false);
@@ -72,24 +73,22 @@ const NavBar = () => {
   //   { skip: !authUser?.id },
   // );
   const cartLists: any = [];
-  const { data: cartBooks } = useGetBooksQuery({
-    query: "",
-  });
+  const { data: cartBooks } = useGetBooksQuery({});
 
-  useEffect(() => {
-    const cartbookIds = cartLists?.data?.map(
-      (item: any) => item?.attributes?.book?.data?.id,
-    );
-    let query: any = {
-      populate: ["images"],
-      filters: {
-        id: {
-          $in: cartbookIds,
-        },
-      },
-    };
-    setCartBookFilter({ query });
-  }, [cartLists]);
+  // useEffect(() => {
+  //   const cartbookIds = cartLists?.data?.map(
+  //     (item: any) => item?.attributes?.book?.data?.id,
+  //   );
+  //   let query: any = {
+  //     populate: ["images"],
+  //     filters: {
+  //       id: {
+  //         $in: cartbookIds,
+  //       },
+  //     },
+  //   };
+  //   setCartBookFilter({ query });
+  // }, [cartLists]);
 
   useEffect(() => {
     if (cartLists?.data && cartBooks?.data) {
@@ -141,51 +140,7 @@ const NavBar = () => {
   //   },
   // );
   // const menuItems = navigation?.data?.attributes?.menus;
-  const menuItems = [
-    {
-      text: "Books",
-      url: "/books",
-    },
-    {
-      text: "Authors",
-      url: "/authors",
-    },
-    {
-      text: "Publishers",
-      url: "/publishers",
-    },
-    {
-      text: "Contact us",
-      url: "/contact",
-    },
-  ];
-  const profileMenuItems = [
-    {
-      url: "/profile",
-      text: "Profile",
-    },
-    {
-      url: "/profile/my-orders",
-      text: "My Orders",
-    },
-    {
-      url: "/profile/my-wishlist",
-      text: "My Wishlists",
-    },
-    {
-      url: "/checkout",
-      text: "Checkout",
-    },
-    {
-      url: "/profile/change-password",
-      text: "Change Password",
-    },
-    {
-      url: "/",
-      text: "Logout",
-      onClickHandler: "logoutUser",
-    },
-  ];
+
   const toggleDrawer = (open: any) => (event: any) => {
     if (
       event &&
@@ -262,6 +217,8 @@ const NavBar = () => {
   //   // dispatch(closeRegisterModal());
   // };
 
+  console.log("navbar mounting");
+
   return (
     <>
       <AppBarContainer position="fixed" sx={{ px: { xs: "3%", md: "5%" } }}>
@@ -278,21 +235,37 @@ const NavBar = () => {
           </Link>
           {!serachTrig ? (
             <Stack direction="row" spacing={2} alignItems="center">
-              {menuItems?.map((item: any, index: number) => (
-                <Link
-                  key={index}
-                  href={item.url}
-                  style={{ textDecoration: "none" }}
-                >
-                  <LinkContainer
-                    key={item.id}
-                    active={router.pathname.includes(item.url)}
+              {menuItems?.map((item: any, index: number) => {
+                const active = router.pathname.includes(item.url);
+
+                return (
+                  <Link
+                    key={index}
+                    href={item.url}
+                    style={{ textDecoration: "none" }}
                   >
-                    {item.text}
-                  </LinkContainer>
-                </Link>
-              ))}
-              <LinkContainer additional onClick={toggleSearch}>
+                    <LinkContainer
+                      sx={{
+                        color: active
+                          ? theme.palette.action.hover
+                          : theme.palette.text.primary,
+                      }}
+                      key={item.id}
+                    >
+                      {item.text}
+                    </LinkContainer>
+                  </Link>
+                );
+              })}
+              <LinkContainer
+                sx={{
+                  display: () => ({
+                    xs: "none",
+                    lg: "block",
+                  }),
+                }}
+                onClick={toggleSearch}
+              >
                 Search
               </LinkContainer>
             </Stack>
@@ -417,8 +390,7 @@ const NavBar = () => {
           ) : (
             <Link href="/">
               <LogoContainer>
-                {/*<Logo />*/}
-                Bookstore
+                <Logo />
               </LogoContainer>
             </Link>
           )}
@@ -446,7 +418,7 @@ const NavBar = () => {
         </Stack>
       </MiniTopBarContainer>
 
-      <MobileMenuContainer position="fexed">
+      <MobileMenuContainer position="fixed">
         <Stack
           direction="row"
           spacing={2}

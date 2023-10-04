@@ -5,8 +5,6 @@ import { useRouter } from "next/router";
 import React from "react";
 import ComponentsOverrides from "../../theme/frontendTheme/overrides";
 import NavBar from "./component/NavBar";
-// import Footer from "./Footer";
-// import NavBar from "./NavBar";
 
 const ChildrenContainer = styled(Box)(({ theme }) => ({
   margin: "130px 5%",
@@ -23,7 +21,7 @@ const Layout = ({ children }: any) => {
 
   const router = useRouter();
   const URL = router.pathname;
-
+  console.log("layout");
   return (
     <Box
       sx={

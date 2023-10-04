@@ -1,10 +1,11 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { createContext, useContext, useState } from "react";
 import breakpoints from "../adminTheme/breakpoints";
-import shadows from "../adminTheme/shadows";
+import myShadows from "./shadows";
 import typography from "../adminTheme/typography";
 import { paletteDark, paletteLight } from "./palette";
 import { PaletteMode } from "@mui/material";
+
 const initialContext = {
   mode: "",
   handleChangeMode: () => {},
@@ -31,7 +32,7 @@ export function ThemeContext({ children }: any) {
     typography: {
       ...typography,
     },
-    shadows: shadows(mode),
+    shadows: Object.values(myShadows),
     breakpoints: breakpoints(),
   });
 

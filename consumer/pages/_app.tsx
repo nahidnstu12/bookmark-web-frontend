@@ -35,7 +35,7 @@ export default function MyApp(props: any) {
         <ThemeContext>
           <CssBaseline />
           <Layout>
-            {/*<NextNProgress />*/}
+            {/*  /!*<NextNProgress />*!/*/}
             <Toaster />
             <Component {...pageProps} />
           </Layout>

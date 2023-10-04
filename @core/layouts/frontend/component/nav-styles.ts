@@ -58,9 +58,9 @@ export const LinkContainer = styled(Typography)(
   ({ theme, additional, active }: ILinkContainer) => ({
     margin: 0,
     padding: 0,
-    color: `${
-      active ? theme.palette.action.hover : theme.palette.text.primary
-    }`,
+    // color: `${
+    //   active ? theme.palette.action.hover : theme.palette.text.primary
+    // }`,
     fontSize: "17px",
     fontWeight: "450",
     cursor: "pointer",
@@ -68,10 +68,10 @@ export const LinkContainer = styled(Typography)(
     "&:hover": {
       color: `${theme.palette.action.hover}`,
     },
-    display: additional ? "none" : "",
-    [theme.breakpoints.down("lg")]: {
-      display: additional ? "block" : "",
-    },
+    // display: additional ? "none" : "",
+    // [theme.breakpoints.down("lg")]: {
+    //   display: additional ? "block" : "",
+    // },
   }),
 );
 
@@ -245,9 +245,9 @@ export const MenuLinkContainer = styled(Typography)(
   }),
 );
 
-export const MiniTopBarContainer = styled(Box)(({ theme }) => ({
+export const MiniTopBarContainer = styled(Box)(({ theme }: any) => ({
   backgroundColor: `${theme.palette.background.default}`,
-  boxShadow: `${theme.shadows[2]}`,
+  boxShadow: `${theme.shadows[1]}`,
   padding: "10px 10px",
   display: "none",
   width: "100%",
