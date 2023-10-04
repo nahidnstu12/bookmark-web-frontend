@@ -1,6 +1,4 @@
-// ** React Imports
 import { ReactNode } from "react";
-
 import { Theme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useSettings } from "../../hooks/useSettings";

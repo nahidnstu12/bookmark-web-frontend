@@ -28,7 +28,7 @@ const Layout = ({ children }: any) => {
         URL.includes("/profile") ||
         URL.includes("/checkout") ||
         URL.includes("/contact")
-          ? { backgroundColor: `${theme.palette.background.paper}` }
+          ? { backgroundColor: theme.palette.background.paper }
           : null
       }
     >

@@ -1,9 +1,5 @@
 import { deepmerge } from "@mui/utils";
 import { ThemeOptions } from "@mui/material";
-
-// ** Type Import
-
-// ** Theme Override Imports
 import palette from "./palette";
 import spacing from "./spacings";
 import shadows from "./shadows";
