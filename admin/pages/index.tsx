@@ -10,6 +10,9 @@ import Button from "@mui/material/Button";
 import CustomSelectField from "../../@core/components/Inputs/CustomSelectField";
 import CustomRadioButton from "../../@core/components/Inputs/CustomRadioButton";
 import CustomCheckbox from "../../@core/components/Inputs/CustomCheckbox";
+import { DatatableFilters } from "../../@core/common/enum";
+import DataTable from "../../@core/components/Datatable/Datatable";
+import { posts } from "./data";
 
 export default function Home() {
   const [selectedType, setSelectedType] = useState<string | null | number>(
@@ -128,8 +131,26 @@ export default function Home() {
   };
   console.log("errors", errors);
 
+  const columns = useMemo(
+    () => [
+      {
+        id: "title",
+        cell: (props: any) => {
+          let data = props.row.original;
+          return data.title;
+        },
+        enableColumnFilter: true,
+        filterFn: DatatableFilters.IncludesString,
+        header: "Title",
+      },
+    ],
+    [],
+  );
+
   return (
     <Box>
+      <DataTable columns={columns} loading={false} tableData={posts || []} />
+
       <CommonButton isLoading={true}>hello</CommonButton>
       <CommonButton
         isLoading={false}
