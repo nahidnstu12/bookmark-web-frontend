@@ -17,14 +17,15 @@
     "lint": "next lint",
     "lint:fix": "eslint --fix",
     "format": "prettier --write",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.1",
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@hookform/resolvers": "^3.3.1",
     "@mui/material": "^5.14.2",
     "@reduxjs/toolkit": "^1.9.5",
     "@tanstack/react-table": "^8.9.11",
@@ -44,10 +45,14 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.4.12",
-    "@storybook/addon-actions": "^7.1.1",
-    "@storybook/addon-essentials": "^7.1.1",
-    "@storybook/addon-links": "^7.1.1",
-    "@storybook/react": "^7.1.1",
+    "@storybook/addon-essentials": "7.2.1",
+    "@storybook/addon-interactions": "7.2.1",
+    "@storybook/addon-links": "7.2.1",
+    "@storybook/addon-onboarding": "1.0.8",
+    "@storybook/blocks": "7.2.1",
+    "@storybook/nextjs": "7.2.1",
+    "@storybook/react": "7.2.1",
+    "@storybook/testing-library": "0.2.0",
     "@types/node": "^20.4.5",
     "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
@@ -58,6 +63,7 @@
     "eslint": "^8.46.0",
     "eslint-config-next": "^13.4.12",
     "prettier": "^3.0.0",
+    "storybook": "7.2.1",
     "typescript": "^5.1.6"
   }
 }

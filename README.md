@@ -12,6 +12,7 @@ yarn install
 yarn run dev-local:admin
 yarn run dev-local:consumer
 yarn run dev-local:delivary
+yarn run storybook
 
 ```
 ### Command to Run Local Dev Environment
