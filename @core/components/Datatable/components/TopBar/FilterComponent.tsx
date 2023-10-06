@@ -3,12 +3,11 @@ import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import { useForm } from "react-hook-form";
 import { Button, Grid } from "@mui/material";
-import { DatatableFilterFields } from "../../../../utilities/enums/DataTableFilterEnums";
-import HookFormMuiModal from "../../../../modals/HookFormMuiModal/HookFormMuiModal";
-import { isBreakPointUp } from "../../../../utility/Utils";
 import CustomTextInput from "../../../../elements/input/CustomTextInput/CustomTextInput";
-import CustomFilterableFormSelect from "../../../../elements/input/CustomFilterableFormSelect";
 import { FaFilter } from "react-icons/fa6";
+import { DatatableFilterFields } from "../../../../common/enum";
+import HookFormMuiModal from "../../../Modal/CustomHookFormModal";
+import { isBreakPointUp } from "../../../../utils/Utils";
 
 interface IFilterPopup {
   onClose: any;
@@ -41,7 +40,7 @@ function FilterInputRenderer({
   switch (filterField) {
     case DatatableFilterFields.Select:
       return (
-        <CustomFilterableFormSelect
+        <CustomFormSelect
           required
           id={id}
           label={label}
